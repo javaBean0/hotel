@@ -2,8 +2,9 @@ package com.bigstone.domain;
 
 /**
  * Created with IDEA
- * author:bigStone
+ * author: bigStone
  * Date:2019/4/22
- **/
-public class person {
+ * Time:18:55
+ */
+public class FoodType {
 }

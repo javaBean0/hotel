@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>无线点餐后台管理</title>
+<title></title>
 </head>
-
-		<body>
-			这并不是主页
-		<a href="${pageContext.request.contextPath}/sys/index.jsp">点击这里跳转到后台管理主页</a>
-		</body>
+	<body>
+		<center>
+			<h1>欢迎使用无线点餐平台后台管理</h1>
+		</center>
+	</body>
 </html>

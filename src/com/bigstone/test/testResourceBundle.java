@@ -1,6 +1,11 @@
 package com.bigstone.test;
 
+import com.bigstone.domain.FoodType;
+import com.bigstone.factory.BeanFactory;
+import com.bigstone.service.IFoodTypeService;
 import org.junit.Test;
+
+import java.util.List;
 import java.util.ResourceBundle;
 /**
  * Created with IDEA
@@ -9,13 +14,16 @@ import java.util.ResourceBundle;
  * Time:8:34
  */
 public class testResourceBundle {
-    //加载配置文件
-    private static ResourceBundle resourceBundle;
+
+    private IFoodTypeService foodTypeService = BeanFactory.getInstance("foodTypeService", IFoodTypeService.class);
 
     @Test
     public void testResourceBundle(){
-        resourceBundle = ResourceBundle.getBundle("instance");
-        System.out.println(resourceBundle.getString("foodTypeDao"));;
+        List<FoodType> foodTypeList = foodTypeService.getAll();
+            for (int i = 0; i < foodTypeList.size(); i++) {
+            FoodType foodType =  foodTypeList.get(i);
+            System.out.println(foodType);
+        }
     }
 
 }

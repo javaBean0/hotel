@@ -88,20 +88,20 @@ body {
 				<img src="${pageContext.request.contextPath}/sys/style/images/func20001.gif" class="Icon" />
 				系统菜单
 			</div>
-            <ul class="MenuLevel2">
-            	<li class="level2 level2Style">
-                    <a target="right" href="${pageContext.request.contextPath}/sys/boardList.jsp">餐桌管理</a>
+			<ul class="MenuLevel2">
+				<li class="level2 level2Style">
+					<a target="right" href="${pageContext.request.contextPath }/sys/boardList.jsp">餐桌管理</a>
 				</li>
-                <li class="level2 level2Style">
-                	<a target="right" href="${pageContext.request.contextPath}/sys/cuisineList.jsp">菜系管理</a>
+				<li class="level2 level2Style">
+					<a target="right" href="${pageContext.request.contextPath }/foodType?method=list">菜系管理</a>
 				</li>
-                <li class="level2 level2Style">
-                	<a target="right" href="${pageContext.request.contextPath}/sys/foodList.jsp">菜品管理</a>
+				<li class="level2 level2Style">
+					<a target="right" href="${pageContext.request.contextPath }/sys/foodList.jsp">菜品管理</a>
 				</li>
-                <li class="level2 level2Style">
-                	<a target="right" href="${pageContext.request.contextPath}/sys/orderList.jsp">餐厅订单</a>
+				<li class="level2 level2Style">
+					<a target="right" href="orderList.html">餐厅订单</a>
 				</li>
-            </ul>
+			</ul>
         </li>
     </ul>
 </body>

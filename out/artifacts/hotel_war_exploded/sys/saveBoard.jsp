@@ -3,11 +3,7 @@
 <html>
 <head>
  	<!-- 包含公共的JSP代码片段 -->
-	
 <title>无线点餐平台</title>
-
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="style/js/jquery.js"></script>
 <script type="text/javascript" src="style/js/page_common.js"></script>

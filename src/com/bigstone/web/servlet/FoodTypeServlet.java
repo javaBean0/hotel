@@ -3,7 +3,9 @@ package com.bigstone.web.servlet;
 import com.bigstone.domain.FoodType;
 import com.bigstone.factory.BeanFactory;
 import com.bigstone.service.IFoodTypeService;
+import com.bigstone.utils.commons.CommonUtils;
 import com.sun.deploy.panel.DeleteFilesDialog;
+import org.apache.commons.dbutils.DbUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,26 +27,31 @@ public class FoodTypeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        //乱码设置
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
         String methodName = req.getParameter("method");
 
         if ("list".equals(methodName)) {
             //查看列表
             list(req, resp);
-
         } else if ("addFoodType".equals(methodName)) {
             //添加菜系
             save(req, resp);
         } else if ("delete".equals(methodName)) {
             //删除
             delete(req, resp);
+        }else if ("update".equals(methodName)){
+            updata(req, resp);
         }
 
     }
 
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        this.doGet(req, resp);
     }
 
     /**
@@ -78,7 +85,8 @@ public class FoodTypeServlet extends HttpServlet {
         FoodType foodType = new FoodType();
         foodType.setTypeName(foodTypeName);
         foodTypeService.save(foodType);
-        req.getRequestDispatcher("/sys/type/foodtype_list.jsp").forward(req, resp);
+        req.getRequestDispatcher("/foodType?method=list").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/foodType?method=list");
     }
 
     /**
@@ -90,6 +98,20 @@ public class FoodTypeServlet extends HttpServlet {
      * @throws IOException
      */
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            //获取页面传递的ID
+            int id = Integer.parseInt(req.getParameter("id"));
+            //删除数据
+            foodTypeService.delete(id);
+            resp.sendRedirect(req.getContextPath() + "/sys/type/foodtype_list");
+        } catch (NumberFormatException e) {
+            resp.sendRedirect(req.getContextPath() + "/error/error.jsp");
+        }
+    }
+
+    private void updata(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
+
+
 }

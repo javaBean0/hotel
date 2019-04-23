@@ -57,7 +57,7 @@
                                 <td>${foodType.typeName}</td>
                                 <td>
                                     <a href="updateCuisine.html" class="FunctionButton">更新</a>
-                                    <a href="${pageContext.request.contextPath}/foodType?method=detete&id=${foodType.id}" class="FunctionButton">删除</a>
+                                    <a href="${pageContext.request.contextPath}/foodType?method='detete'" class="FunctionButton">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>

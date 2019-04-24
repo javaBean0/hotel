@@ -17,6 +17,7 @@ public class BaseServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");//处理响应编码
 
         /**

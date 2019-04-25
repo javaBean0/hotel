@@ -13,7 +13,7 @@ public class DinnerTable implements Serializable {
 
     private int id;
     private String tableName;
-    private int tableState;
+    private int tableStatus;
     private Date orderDate;
 
     public int getId() {
@@ -32,12 +32,12 @@ public class DinnerTable implements Serializable {
         this.tableName = tableName;
     }
 
-    public int getTableState() {
-        return tableState;
+    public int getTableStatus() {
+        return tableStatus;
     }
 
-    public void setTableState(int tableState) {
-        this.tableState = tableState;
+    public void setTableStatus(int tableStatus) {
+        this.tableStatus = tableStatus;
     }
 
     public Date getOrderDate() {

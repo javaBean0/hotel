@@ -1,6 +1,4 @@
-package com.bigstone.utils.commons;
-
-import cn.itcast.filter.GetRequest;
+package com.bigstone.utils.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

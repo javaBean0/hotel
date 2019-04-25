@@ -4,7 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-
+    <servlet>
+        <servlet-name>DinnerTableServlet</servlet-name>
+        <servlet-class>com.bigstone.web.servlet.DinnerTableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DinnerTableServlet</servlet-name>
+        <url-pattern>/dinnerTable</url-pattern>
+    </servlet-mapping>
 
 
 
@@ -21,7 +28,7 @@
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
-        <filter-class>com.bigstone.utils.commons.EncodingFilter</filter-class>
+        <filter-class>com.bigstone.utils.filter.EncodingFilter</filter-class>
     </filter>
     <filter-mapping>
     <filter-name>EncodingFilter</filter-name>

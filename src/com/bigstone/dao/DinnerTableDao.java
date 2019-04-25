@@ -23,9 +23,9 @@ public interface DinnerTableDao {
     void delete(int id) throws SQLException;
 
     /**根据主键查询*/
-    FoodType findById(int id) throws SQLException;
+    DinnerTable findById(int id) throws SQLException;
 
     /**查询所有*/
-    List<FoodType> getAll() throws SQLException;
+    List<DinnerTable> getAll() throws SQLException;
 
 }

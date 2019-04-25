@@ -4,12 +4,9 @@ import com.bigstone.domain.FoodType;
 import com.bigstone.factory.BeanFactory;
 import com.bigstone.service.IFoodTypeService;
 import com.bigstone.service.impl.FoodTypeServiceImpl;
-import com.bigstone.utils.commons.CommonUtils;
-import com.sun.deploy.panel.DeleteFilesDialog;
-import org.apache.commons.dbutils.DbUtils;
+import com.bigstone.utils.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -74,7 +71,7 @@ public class FoodTypeServlet extends BaseServlet {
             foodTypeService.delete(id);
             return list(req ,resp);
         } catch (NumberFormatException e) {
-            return "/error/error.jsp";
+            return "r:/error/error.jsp";
         }
     }
 

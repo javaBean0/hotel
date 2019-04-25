@@ -18,7 +18,7 @@ import java.util.List;
 public class FoodTypeDaoImpl implements IFoodTypeDao {
     @Override
     public void save(FoodType foodType) throws SQLException {
-        String sql = "INSERT INTO foodType(typeName) values(?)";
+        String sql = "INSERT INTO foodType(typeName) VALUES(?)";
         JdbcUtils.getQueryRunner().update(sql, foodType.getTypeName());
     }
 

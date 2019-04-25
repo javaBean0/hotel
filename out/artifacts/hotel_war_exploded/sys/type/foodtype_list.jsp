@@ -52,12 +52,12 @@
 				<c:choose>
                     <c:when test="${not empty requestScope.foodTypeList}">
                         <c:forEach items="${requestScope.foodTypeList}" var="foodType">
-                            <tr>
+                            <tr align="center">
                                 <td>${foodType.id}</td>
                                 <td>${foodType.typeName}</td>
                                 <td>
                                     <a href="updateCuisine.html" class="FunctionButton">更新</a>
-                                    <a href="${pageContext.request.contextPath}/foodType?method=detete&id=${foodType.id}" class="FunctionButton">删除</a>
+                                    <a href="${pageContext.request.contextPath}/foodType?method=delete&id=${foodType.id}" class="FunctionButton">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>

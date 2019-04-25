@@ -8,12 +8,20 @@ package com.bigstone.test.interview;
  */
 public class Example {
 
+
+    public void test(){
+
+    }
+
+
     public static void main(String[] args) {
 
-        TestClass person = new TestClass();
-        person.setUsername("zhangsan ");
-        person.setPassword("lisl");
-        System.out.println(person);
+        String x="fmn";
+        x = x.toUpperCase();
+        String y=x.replace('f','F');
+        y=y+"wxy";
+        System.out.println(y);
+        System.out.println(Math.cos(Math.toRadians(45)));
 
     }
 

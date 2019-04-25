@@ -7,4 +7,8 @@ package com.bigstone.test.interview;
  * Time:17:38
  */
 public interface TestInterface {
+
+    void save();
+
+
 }

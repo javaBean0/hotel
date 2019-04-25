@@ -5,6 +5,9 @@
          version="4.0">
 
 
+
+
+
     <servlet>
         <servlet-name>FoodTypeServlet</servlet-name>
         <servlet-class>com.bigstone.web.servlet.FoodTypeServlet</servlet-class>
@@ -15,8 +18,19 @@
         <url-pattern>/foodType</url-pattern>
     </servlet-mapping>
 
+
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>com.bigstone.utils.commons.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
     <welcome-file-list>
         <welcome-file>/sys/index.jsp</welcome-file>
-    </welcome-file-list>
+        </welcome-file-list>
 
 </web-app>

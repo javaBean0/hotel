@@ -29,9 +29,9 @@
 
 <!-- 过滤条件 -->
 <div id="QueryArea">
-    <form action="/dinnerTable" method="get">
+    <form action="${pageContext.request.contextPath}/dinnerTable" method="post">
         <input type="hidden" name="method" value="search">
-        <input type="text" name="keyword" title="请输入餐桌名称">
+        <input type="text" name="keyword" value="${keyword}" title="请输入餐桌名称">
         <input type="submit" value="搜索">
     </form>
 </div>
@@ -58,10 +58,18 @@
         <tr class="TableDetail1">
             <td align="center">${dinnerTable.id}&nbsp;</td>
             <td align="center"> ${dinnerTable.tableName}&nbsp;</td>
-            <td align="center">${dinnerTable.tableStatus}</td>
+            <td align="center">${dinnerTable.tableStatus eq 1 ? '预定' : '空闲'}</td>
             <td align="center">${dinnerTable.orderDate}</td>
             <td>
-                <a href="/wirelessplatform/board.html?method=update&id=1&isBook=0" class="FunctionButton">退桌</a>
+               <c:choose>
+                   <c:when test="${dinnerTable.tableStatus eq 1}">
+                       <a href="${pageContext.request.contextPath}/dinnerTable?method=cancel&id=${dinnerTable.id}" class="FunctionButton">退桌</a>
+                   </c:when>
+                   <c:otherwise>
+                       <a href="#" class="FunctionButton">退桌</a>
+                   </c:otherwise>
+               </c:choose>
+
                 <a href="${pageContext.request.contextPath}/dinnerTable?method=delete&id=${dinnerTable.id}" onClick="return delConfirm();"
                    class="FunctionButton">删除</a>
             </td>

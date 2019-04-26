@@ -52,4 +52,17 @@ public class DinnerTableDaoImpl implements DinnerTableDao {
         String sql = "SELECT * FROM dinnertable";
         return qr.query(sql, new BeanListHandler<DinnerTable>(DinnerTable.class));
     }
+
+    @Override
+    public List<DinnerTable> findByName(String tableName) throws SQLException {
+        String sql = "SELECT * FROM dinnertable WHERE tableName LIKE ?";
+        return qr.query(sql, new BeanListHandler<DinnerTable>(DinnerTable.class), "%" + tableName + "%");
+    }
+
+    @Override
+    public void cancel(DinnerTable dinnerTable) throws SQLException{
+        String sql = "UPDATE dinnertable SET tableStatus = ?, orderDate = ? WHERE id = ?";
+        Object [] params = new Object[]{dinnerTable.getTableStatus(), dinnerTable.getOrderDate(), dinnerTable.getId()};
+        qr.update(sql, params);
+    }
 }

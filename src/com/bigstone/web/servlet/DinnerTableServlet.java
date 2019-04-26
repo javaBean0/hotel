@@ -44,4 +44,23 @@ public class DinnerTableServlet extends BaseServlet {
         req.setAttribute("dinnerTableList", dinnerTableList);
         return "f:/sys/dinnertable_list.jsp";
     }
+    
+    public String search(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        String tableName = req.getParameter("keyword");
+        List<DinnerTable> dinnerTableList =  dinnerTableService.findByName(tableName);
+        req.setAttribute("dinnerTableList", dinnerTableList);
+        req.setAttribute("keyword", tableName);
+        return "f:/sys/dinnertable_list.jsp";
+    }
+
+    public String cancel(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException{
+        int id = Integer.parseInt(req.getParameter("id"));
+        dinnerTableService.cancel(id);
+        return list(req, resp);
+    }
+
+    
+    
 }

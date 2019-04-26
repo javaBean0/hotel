@@ -28,4 +28,7 @@ public interface DinnerTableDao {
     /**查询所有*/
     List<DinnerTable> getAll() throws SQLException;
 
+    List<DinnerTable> findByName(String tableName) throws SQLException;
+
+    void cancel(DinnerTable dinnerTable) throws SQLException;
 }

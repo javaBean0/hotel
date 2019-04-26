@@ -28,4 +28,7 @@ public interface DinnerTableService {
     /**查询所有*/
     List<DinnerTable> getAll() ;
 
+    List<DinnerTable> findByName(String tableName);
+
+    void cancel(int id);
 }

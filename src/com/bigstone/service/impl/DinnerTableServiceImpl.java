@@ -62,4 +62,27 @@ public class DinnerTableServiceImpl implements DinnerTableService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<DinnerTable> findByName(String tableName) {
+        try {
+            return  dinnerTableDao.findByName(tableName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void cancel(int id) {
+        DinnerTable dinnerTable = null;
+        try {
+            dinnerTable = dinnerTableDao.findById(id);
+            dinnerTable.setTableStatus(0);
+            dinnerTable.setOrderDate(null);
+            dinnerTableDao.cancel(dinnerTable);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

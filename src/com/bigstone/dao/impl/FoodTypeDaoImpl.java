@@ -6,6 +6,7 @@ import com.bigstone.utils.jdbc.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -48,9 +49,14 @@ public class FoodTypeDaoImpl implements IFoodTypeDao {
     }
 
     @Override
-    public List<FoodType> getAll() throws SQLException {
-        String sql = "SELECT * FROM foodType";
-        return qr.query(sql, new BeanListHandler<FoodType>(FoodType.class));
+    public List<FoodType> getAll(String name) throws SQLException {
+       if(name == null){
+           String sql = "SELECT * FROM foodType";
+           return qr.query(sql, new BeanListHandler<FoodType>(FoodType.class));
+       }else{
+           String sql = "SELECT * FROM foodType WHERE typeName LIKE ?";
+           return qr.query(sql, new BeanListHandler<FoodType>(FoodType.class), "%" + name + "%");
+       }
     }
 
     @Override
@@ -58,5 +64,24 @@ public class FoodTypeDaoImpl implements IFoodTypeDao {
         String sql = "SELECT * FROM foodType where typeName like ?";
         return qr.query(sql,
                 new BeanListHandler<FoodType>(FoodType.class), "%" + foodName + "%");
+    }
+
+    @Override
+    public FoodType getById(int id) throws SQLException {
+        String sql = "SELECT * FROM foodType WHERE id = ?";
+        return qr.query(sql, new BeanHandler<FoodType>(FoodType.class), id);
+    }
+
+    @Override
+    public int findTotalRecords(String name) throws SQLException {
+        String sql = "SELECT count(*) FROM foodType";
+        Number result = null;
+        if(name == null){
+            result =  qr.query(sql, new ScalarHandler<>());
+        }else{
+            sql = "SELECT count(*) FROM foodType WHERE typeName LIke ?";
+            result = qr.query(sql, new ScalarHandler<>(), "%" + name + "%");
+        }
+        return result.intValue();//得到总记录数
     }
 }

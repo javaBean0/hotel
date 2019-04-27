@@ -4,6 +4,8 @@ import com.bigstone.domain.FoodType;
 import com.bigstone.factory.BeanFactory;
 import com.bigstone.service.IFoodTypeService;
 import com.bigstone.service.impl.FoodTypeServiceImpl;
+import com.bigstone.utils.commons.CommonUtils;
+import com.bigstone.utils.commons.PageBean;
 import com.bigstone.utils.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -31,10 +33,12 @@ public class FoodTypeServlet extends BaseServlet {
      */
     public String list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String keyword = req.getParameter("keyword");
+        int pagenum = Integer.parseInt(req.getParameter("pagenum"));
         //查询数据库数据
-        List<FoodType> foodTypeList = foodTypeService.getAll();
+        PageBean pageBean = foodTypeService.getAll(keyword, pagenum);
         //保存数据到request域中
-        req.setAttribute("foodTypeList", foodTypeList);
+        req.setAttribute("pageBean", pageBean);
         //转发到页面
         return "f:/sys/type/foodtype_list.jsp";
     }
@@ -75,8 +79,30 @@ public class FoodTypeServlet extends BaseServlet {
         }
     }
 
-    public void updata(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    public String updateUI(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException{
+        int id = Integer.parseInt(req.getParameter("id"));
+        FoodType foodType = foodTypeService.getById(id);
+        req.setAttribute("foodType", foodType);
+        return "f:/sys/type/foodtype_update.jsp";
     }
+
+
+    public String update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        FoodType foodType = CommonUtils.toBean(req.getParameterMap(), FoodType.class);
+        foodTypeService.update(foodType);
+        return list(req, resp);
+    }
+
+    public String search(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        String typeName = req.getParameter("keyword");
+        List<FoodType> foodTypeList = foodTypeService.getByName(typeName);
+        //保存查询数据
+        req.setAttribute("foodTypeList", foodTypeList);
+        //保存回显数据
+        req.setAttribute("keyword", typeName);
+        return "f:/sys/type/foodtype_list.jsp";
+    }
+
 
 }

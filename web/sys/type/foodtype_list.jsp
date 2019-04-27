@@ -29,9 +29,9 @@
 	</div>
 	<!-- 过滤条件 -->
 	<div id="QueryArea">
-		<form action="/wirelessplatform/cuisine.html" method="get">
+		<form action="${pageContext.request.contextPath}/foodType" method="get">
 			<input type="hidden" name="method" value="search">
-			<input type="text" name="keyword" title="请输入菜系名称">
+			<input type="text" name="keyword" value="${keyword}" title="请输入菜系名称">
 			<input type="submit" value="搜索">
 		</form>
 	</div>
@@ -50,13 +50,13 @@
 			<!--显示数据列表 -->
 			<tbody id="TableData">
 				<c:choose>
-                    <c:when test="${not empty requestScope.foodTypeList}">
-                        <c:forEach items="${requestScope.foodTypeList}" var="foodType">
+                    <c:when test="${not empty requestScope.pageBean.foodTypeList}">
+                        <c:forEach items="${requestScope.pageBean.foodTypeList}" var="foodType">
                             <tr align="center">
                                 <td>${foodType.id}</td>
                                 <td>${foodType.typeName}</td>
                                 <td>
-                                    <a href="updateCuisine.html" class="FunctionButton">更新</a>
+                                    <a href="${pageContext.request.contextPath}/foodType?method=updateUI&id=${foodType.id}" class="FunctionButton">更新</a>
                                     <a href="${pageContext.request.contextPath}/foodType?method=delete&id=${foodType.id}" class="FunctionButton">删除</a>
                                 </td>
                             </tr>
@@ -78,6 +78,7 @@
 		<div id="TableTail" align="center">
 			<div class="FunctionButton">
 				<a href="${pageContext.request.contextPath}/sys/type/foodtype_save.jsp">添加</a>
+				<%@ include file="/commons/pageBean.jsp" %>
 			</div>
 		</div>
 	</div>

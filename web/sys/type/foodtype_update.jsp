@@ -9,10 +9,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="../style/js/jquery.js"></script>
-<script type="text/javascript" src="../style/js/page_common.js"></script>
-<link href="../style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="../style/css/index_1.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/sys/style/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/sys/style/js/page_common.js"></script>
+<link href="${pageContext.request.contextPath}/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/sys/style/css/index_1.css" />
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 		<div id="TitleArea_Title_Content">
 			
 				
-					<img border="0" width="13" height="13" src="../style/images/title_arrow.gif"/>  更新菜系
+					<img border="0" width="13" height="13" src="${pageContext.request.contextPath}/sys/style/images/title_arrow.gif"/>  更新菜系
 				
 				
 			
@@ -37,11 +37,12 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form action="#" method="post">
+	<form action="${pageContext.request.contextPath}/foodType" method="post">
+		<input type="hidden" name="method" value="update"/>
 	
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
-        	<img width="4" height="7" border="0" src="../style/images/item_point.gif"> 菜系信息&nbsp;
+        	<img width="4" height="7" border="0" src="${pageContext.request.contextPath}/sys/style/images/item_point.gif"> 菜系信息&nbsp;
         </div>
 		<!-- 本段表单字段 -->
         <div class="ItemBlockBorder">
@@ -51,8 +52,8 @@
 						<tr>
 							<td width="80px">菜系名称</td>
 							<td>
-								<input type="text" name="name" class="InputStyle" value="粤菜"/> *
-								<input type="hidden" name="cid" value="1" />
+								<input type="text" name="typeName" class="InputStyle" value="${foodType.typeName}"/> *
+								<input type="hidden" name="id" value="${foodType.id}" />
 							</td>
 						</tr>
 					</table>

@@ -27,11 +27,13 @@ public interface IFoodTypeDao {
     FoodType findById(int id) throws SQLException;
 
     /**查询所有*/
-    List<FoodType> getAll() throws SQLException;
+    List<FoodType> getAll(String name) throws SQLException;
 
 
     /**根据菜系名称查询*/
     List<FoodType> getByName(String foodName) throws SQLException;
 
+    FoodType getById(int id) throws SQLException;
 
+    int findTotalRecords(String name) throws SQLException;
 }

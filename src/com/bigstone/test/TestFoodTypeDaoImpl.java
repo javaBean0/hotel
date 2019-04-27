@@ -1,4 +1,4 @@
-package com.bigstone.test;
+
 
 import com.bigstone.dao.IFoodTypeDao;
 import com.bigstone.dao.impl.FoodTypeDaoImpl;
@@ -44,15 +44,24 @@ public class TestFoodTypeDaoImpl {
         }
     }
 
-    @Test
+  /*  @Test
     public void testFindAll() throws SQLException{
         List<FoodType> foodTypes = getFoodTypeDao().getAll();
         for (FoodType foodType : foodTypes){
             System.out.println(foodType);
         }
+    }*/
+
+
+    @Test
+    public void testString(){
+        String str = "abc";
+        str = str +  "cde";
+        System.out.println(str);
     }
 
 
 
+    public void test(int a, int b){}
 
 }

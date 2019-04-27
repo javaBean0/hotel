@@ -5,6 +5,7 @@ import com.bigstone.dao.impl.FoodTypeDaoImpl;
 import com.bigstone.domain.FoodType;
 import com.bigstone.factory.BeanFactory;
 import com.bigstone.service.IFoodTypeService;
+import com.bigstone.utils.commons.PageBean;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -56,10 +57,20 @@ public class FoodTypeServiceImpl implements IFoodTypeService {
         }
     }
 
+
     @Override
-    public List<FoodType> getAll() {
+    public PageBean getAll(String name, Integer num) {
         try {
-            return foodTypeDao.getAll();
+            int currentPageNum = 1;
+            if(num != null){
+                currentPageNum = num;
+            }
+            //获取总条目数
+            int totalRecords = foodTypeDao.findTotalRecords(name);
+            PageBean pageBean = new PageBean(currentPageNum, totalRecords);
+            List<FoodType> foodTypeList = foodTypeDao.getAll(name);
+            pageBean.setRecords(foodTypeList);
+            return pageBean;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -69,6 +80,15 @@ public class FoodTypeServiceImpl implements IFoodTypeService {
     public List<FoodType> getByName(String foodName) {
         try {
             return foodTypeDao.getByName(foodName);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public FoodType getById(int id) {
+        try {
+            return foodTypeDao.getById(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
